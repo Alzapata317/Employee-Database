@@ -1,6 +1,6 @@
 const inquirer = require('inquirer')
-
-function init() {
+const connection = require('./connection')
+function init() {  
     inquirer 
         .prompt([
             {
@@ -47,14 +47,43 @@ function init() {
 
             }
         })
-    function viewDepartments() {
 
+    function viewDepartments() {
+        connection.query('SELECT * FROM department;', (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.table([result])
+            }
+        });
+        // connection.getDepartment()
+        //     .then(([databases]) => {
+        //         console.log(databases)
+        //     })
+        //     .then(() => init());
     }
     function viewRoles() {
-
+        connection.query('SELECT * FROM ;', (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.table([result])
+            }
+            init();
+        });
+        
     }
     function viewEmployees() {
-
+        connection.query('SELECT * FROM ;', (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.table([result])
+            }
+        });
     }
     function addDepartments() {
         inquirer
